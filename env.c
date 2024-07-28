@@ -14,7 +14,7 @@
  *
  * Note: This function does not return a value; it operates by side effect.
  */
-void find_env(char **cmds);
+void find_env(char **cmds)
 {
     char *path_env = getenv("PATH");
     if (!path_env)
