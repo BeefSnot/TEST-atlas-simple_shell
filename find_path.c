@@ -10,20 +10,16 @@
 void ss_cd(char **args);
 void ss_exit(char **args);
 void ss_help(char **args);
+void find_path(char **cmds);
 void find_env(char **cmds);
 
 int main(int argc, char *argv[])
 {
-    
     char *commands[] = {"cd", "/home/user", "exit", "ls", NULL};
     find_path(commands);
     return 0;
 }
 
-/**
- * ss_cd - Changes the current working directory.
- * @args: Array of arguments, args[0] is "cd", args[1] is the directory path.
- */
 void ss_cd(char **args)
 {
     if (args[1] == '\0')
@@ -39,10 +35,6 @@ void ss_cd(char **args)
     }
 }
 
-/**
- * ss_exit - Exits the shell with an optional status code.
- * @args: Array of arguments, args[0] is "exit", args[1] is the exit status.
- */
 void ss_exit(char **args)
 {
     int status = 0;
@@ -53,10 +45,6 @@ void ss_exit(char **args)
     exit(status);
 }
 
-/**
- * ss_help - Prints help information about the shell.
- * @args: Array of arguments, args[0] is "help".
- */
 void ss_help(char **args)
 {
     printf("Simple Shell\n");
@@ -67,16 +55,11 @@ void ss_help(char **args)
     printf("  help\n");
 }
 
-/**
- * find_path - Finds and executes the command passed in the arguments.
- * @cmds: Array of command strings to be executed.
- */
 void find_path(char **cmds)
 {
     int cmd_index = 0;
     while (cmds[cmd_index] != NULL)
     {
-        char **current_command = cmds[cmd_index];
         int is_builtin = 0;
         int builtin_index = 0;
         const char *builtin_commands[] = {"cd", "exit", "help"};
@@ -84,10 +67,10 @@ void find_path(char **cmds)
 
         for (builtin_index = 0; builtin_index < sizeof(builtin_commands) / sizeof(const char *); builtin_index++)
         {
-            if (strcmp(current_command[0], builtin_commands[builtin_index]) == 0)
+            if (strcmp(cmds[cmd_index], builtin_commands[builtin_index]) == 0)
             {
                 is_builtin = 1;
-                (*builtin_functions[builtin_index])(current_command);
+                (*builtin_functions[builtin_index])(&cmds[cmd_index]);
                 break;
             }
         }
@@ -101,10 +84,6 @@ void find_path(char **cmds)
     }
 }
 
-/**
- * find_env - Executes the command passed in the arguments.
- * @cmds: Array of command strings to be executed.
- */
 void find_env(char **cmds)
 {
     pid_t pid = fork();
