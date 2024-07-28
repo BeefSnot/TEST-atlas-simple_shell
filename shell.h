@@ -17,7 +17,7 @@
 
 int main(void);
 char ***parse(const char *line);
-char **prompt();
+char **prompt(void);
 void fork_exec(char **command, char *full_path);
 void find_path(char **cmds);
 void ss_cd(char **args);
