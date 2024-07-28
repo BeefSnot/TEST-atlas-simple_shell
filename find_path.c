@@ -4,7 +4,7 @@
 #include <unistd.h>
 #include <sys/types.h>
 #include <sys/wait.h>
-#include "shell.h"
+#include "./shell.h"
 
 /* Function prototypes */
 void ss_cd(char **args);
@@ -26,7 +26,7 @@ int main(int argc, char *argv[])
  */
 void ss_cd(char **args)
 {
-    if (args[1] == NULL)
+    if (args[1] == '\0')
     {
         fprintf(stderr, "ss: expected argument to \"cd\"\n");
     }

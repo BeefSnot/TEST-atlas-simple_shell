@@ -3,7 +3,7 @@
 #include <string.h>
 #include <unistd.h>
 #include <sys/wait.h>
-#include "shell.h"
+#include "./shell.h"
 
 /**
  * find_env - Searches the PATH environment variable for the executable.

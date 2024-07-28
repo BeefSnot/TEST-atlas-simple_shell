@@ -4,14 +4,14 @@
 #include <unistd.h>
 #include <sys/types.h>
 #include <sys/wait.h>
-#include "shell.h"
+#include "./shell.h"
 
 /**
  * prompt - Prompts and parses user input.
  *
  * Return: Parsed user input.
  */
-char **prompt(void);
+char **prompt(void)
 {
     char *line = NULL;
     char **parsed_cmds;

@@ -1,4 +1,4 @@
-#include "shell.h"
+#include "./shell.h"
 /**
  * main - Simple shell
  * Return: 0 or -1 on fail.
