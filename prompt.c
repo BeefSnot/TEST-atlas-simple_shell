@@ -32,7 +32,7 @@ char **prompt(void)
     }
 
     parsed_cmds = parse(line);
-    free(line); // Ensure memory is freed after use
+    free(line);
 
     return parsed_cmds;
 }
