@@ -6,7 +6,7 @@
  *
  * Return: 1 on success, -1 on failure.
  */
-int ss_cd(const char *cmds)
+void ss_cd(char **args);
 {
     if (!cmds || !cmds[1])
     {
@@ -24,7 +24,7 @@ int ss_cd(const char *cmds)
 /**
  * ss_exit - Exits the shell.
  */
-void ss_exit(void)
+void ss_exit(char **args);
 {
     exit(EXIT_SUCCESS);
 }
@@ -32,7 +32,7 @@ void ss_exit(void)
 /**
  * ss_help - Lists the built-in functions of the shell.
  */
-void ss_help(void)
+void ss_help(char **args);
 {
     int i;
     const char *builtins[] = {"ss_cd", "ss_exit", "ss_help"};
