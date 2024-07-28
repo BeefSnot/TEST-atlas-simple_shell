@@ -17,8 +17,10 @@
  */
 void fork_exec(char **command, char *full_path)
 {
-    pid_t pid = fork();
+    pid_t pid;
+    int status;
 
+    pid = fork();
     if (pid == -1)
     {
         perror("Fork failed");
@@ -34,7 +36,6 @@ void fork_exec(char **command, char *full_path)
     }
     else
     {
-        int status;
         if (waitpid(pid, &status, 0) == -1)
         {
             perror("Waitpid failed");
