@@ -9,9 +9,9 @@
 /**
  * prompt - Prompts and parses user input.
  *
- * @return: Parsed user input.
+ * Return: Parsed user input.
  */
-char **prompt(void);
+char **prompt(void)
 {
     char *line = NULL;
     char **parsed_cmds;
