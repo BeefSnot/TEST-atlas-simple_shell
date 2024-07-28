@@ -16,7 +16,7 @@
 #define MAX_BUILTINS 3
 
 int main(void);
-char **parse(const char *line); // Assuming parse should return char **
+char **parse(const char *line);
 char **prompt(void);
 void fork_exec(char **command, char *full_path);
 void find_path(char **cmds);
