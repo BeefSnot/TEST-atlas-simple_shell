@@ -46,4 +46,3 @@ void ss_help(void) {
     }
     printf("If you need more information, feel free to use the 'man' command\n");
     printf("to view the manual for the shell!\n");
-}
