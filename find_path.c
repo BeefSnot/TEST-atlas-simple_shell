@@ -98,7 +98,7 @@ void ss_help(char **args);
  * find_env - Find the environment for non-builtin commands.
  * @cmds: An array of command strings to be processed.
  */
-void find_env(char **cmds)
+void find_env(char **cmds);
 {
     
 }
