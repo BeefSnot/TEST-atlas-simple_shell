@@ -16,13 +16,13 @@
 #define MAX_BUILTINS 3
 
 int main(void);
-char ***parse(const char *line);
+char **parse(const char *line); // Assuming parse should return char **
 char **prompt(void);
 void fork_exec(char **command, char *full_path);
 void find_path(char **cmds);
 void ss_cd(char **args);
 void ss_exit(char **args);
 void ss_help(char **args);
-void find_env(char **cmds);
+void findenv(char **cmds); // Corrected typo here
 
 #endif
