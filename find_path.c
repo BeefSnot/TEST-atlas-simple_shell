@@ -6,19 +6,74 @@
 #include <sys/wait.h>
 #include "shell.h"
 
+/* Function prototypes */
 void ss_cd(char **args);
 void ss_exit(char **args);
 void ss_help(char **args);
 void find_env(char **cmds);
 
+int main(int argc, char *argv[])
+{
+    
+    char *commands[] = {"cd", "/home/user", "exit", "ls", NULL};
+    find_path(commands);
+    return 0;
+}
+
 /**
- * find_path - Processes parsed commands.
- * @cmds: An array of command strings to be processed.
+ * ss_cd - Changes the current working directory.
+ * @args: Array of arguments, args[0] is "cd", args[1] is the directory path.
  */
-void find_path(char **cmds);
+void ss_cd(char **args)
+{
+    if (args[1] == NULL)
+    {
+        fprintf(stderr, "ss: expected argument to \"cd\"\n");
+    }
+    else
+    {
+        if (chdir(args[1]) != 0)
+        {
+            perror("ss");
+        }
+    }
+}
+
+/**
+ * ss_exit - Exits the shell with an optional status code.
+ * @args: Array of arguments, args[0] is "exit", args[1] is the exit status.
+ */
+void ss_exit(char **args)
+{
+    int status = 0;
+    if (args[1] != NULL)
+    {
+        status = atoi(args[1]);
+    }
+    exit(status);
+}
+
+/**
+ * ss_help - Prints help information about the shell.
+ * @args: Array of arguments, args[0] is "help".
+ */
+void ss_help(char **args)
+{
+    printf("Simple Shell\n");
+    printf("Type program names and arguments, and hit enter.\n");
+    printf("The following are built in:\n");
+    printf("  cd\n");
+    printf("  exit\n");
+    printf("  help\n");
+}
+
+/**
+ * find_path - Finds and executes the command passed in the arguments.
+ * @cmds: Array of command strings to be executed.
+ */
+void find_path(char **cmds)
 {
     int cmd_index = 0;
-
     while (cmds[cmd_index] != NULL)
     {
         char **current_command = cmds[cmd_index];
@@ -47,58 +102,24 @@ void find_path(char **cmds);
 }
 
 /**
- * ss_cd - Built-in command: change directory.
- * @args: List of arguments.  args[0] is "cd".  args[1] is the directory.
+ * find_env - Executes the command passed in the arguments.
+ * @cmds: Array of command strings to be executed.
  */
-void ss_cd(char **args);
+void find_env(char **cmds)
 {
-    if (args[1] == NULL)
+    pid_t pid = fork();
+    if (pid == 0) /* Child process */
     {
-        fprintf(stderr, "ss: expected argument to \"cd\"\n");
+        execvp(cmds[0], cmds);
+        perror("ss"); /* execvp returns only on failure */
+        exit(EXIT_FAILURE);
     }
-    else
+    else if (pid > 0) /* Parent process */
     {
-        if (chdir(args[1]) != 0)
-        {
-            perror("ss");
-        }
+        wait(NULL); /* Wait for child to finish */
     }
-}
-
-/**
- * ss_exit - Built-in command: exit the shell.
- * @args: List of arguments.  args[0] is "exit".  args[1] is the status.
- */
-void ss_exit(char **args);
-{
-    int status = 0;
-    if (args[1] != NULL)
+    else /* Fork failed */
     {
-        status = atoi(args[1]);
+        perror("ss");
     }
-    exit(status);
-}
-
-/**
- * ss_help - Built-in command: print help.
- * @args: List of arguments.  args[0] is "help".
- */
-void ss_help(char **args);
-{
-    printf("Simple Shell\n");
-    printf("Type program names and arguments, and hit enter.\n");
-    printf("The following are built in:\n");
-
-    printf("  cd\n");
-    printf("  exit\n");
-    printf("  help\n");
-}
-
-/**
- * find_env - Find the environment for non-builtin commands.
- * @cmds: An array of command strings to be processed.
- */
-void find_env(char **cmds);
-{
-    
 }
