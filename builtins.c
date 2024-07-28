@@ -25,7 +25,7 @@ void ss_cd(char **args);
  * ss_exit - Exits the shell.
  */
 void ss_exit(char **args);
-
+{
     exit(EXIT_SUCCESS);
 }
 
@@ -33,7 +33,7 @@ void ss_exit(char **args);
  * ss_help - Lists the built-in functions of the shell.
  */
 void ss_help(char **args);
-
+{
     int i;
     const char *builtins[] = {"ss_cd", "ss_exit", "ss_help"};
 
