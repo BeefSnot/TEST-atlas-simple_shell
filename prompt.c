@@ -11,7 +11,7 @@
  *
  * @return: Parsed user input.
  */
-char **prompt(void)
+char **prompt(void);
 {
     char *line = NULL;
     char **parsed_cmds;
