@@ -15,7 +15,7 @@ void find_env(char **cmds);
  * find_path - Processes parsed commands.
  * @cmds: An array of command strings to be processed.
  */
-void find_path(char **cmds)
+void find_path(char **cmds);
 {
     int cmd_index = 0;
 
@@ -50,7 +50,7 @@ void find_path(char **cmds)
  * ss_cd - Built-in command: change directory.
  * @args: List of arguments.  args[0] is "cd".  args[1] is the directory.
  */
-void ss_cd(char **args)
+void ss_cd(char **args);
 {
     if (args[1] == NULL)
     {
@@ -69,7 +69,7 @@ void ss_cd(char **args)
  * ss_exit - Built-in command: exit the shell.
  * @args: List of arguments.  args[0] is "exit".  args[1] is the status.
  */
-void ss_exit(char **args)
+void ss_exit(char **args);
 {
     int status = 0;
     if (args[1] != NULL)
@@ -83,7 +83,7 @@ void ss_exit(char **args)
  * ss_help - Built-in command: print help.
  * @args: List of arguments.  args[0] is "help".
  */
-void ss_help(char **args)
+void ss_help(char **args);
 {
     printf("Simple Shell\n");
     printf("Type program names and arguments, and hit enter.\n");
