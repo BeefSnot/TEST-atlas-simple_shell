@@ -1,3 +1,8 @@
+#include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
+#include <unistd.h>
+#include <sys/types.h>
 #include <sys/wait.h>
 #include "shell.h"
 
@@ -27,7 +32,7 @@ char **prompt(void)
     }
 
     parsed_cmds = parse(line);
-    free(line);
+    free(line); // Ensure memory is freed after use
 
     return parsed_cmds;
 }
