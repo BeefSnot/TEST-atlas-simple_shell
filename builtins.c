@@ -6,7 +6,7 @@
  *
  * Returns: 1 on success, -1 on failure.
  */
-int ss_cd(const char *cmds) {
+int ss_cd(const char *cmds); {
     if (!cmds || !cmds[1]) {
         fprintf(stderr, "ss: expected argument to \"cd\"\n");
         return -1;
@@ -23,7 +23,7 @@ int ss_cd(const char *cmds) {
  *
  * No return value.
  */
-void ss_exit(void) {
+void ss_exit(void); {
     // Exit the shell gracefully.
     exit(EXIT_SUCCESS);
 }
@@ -33,7 +33,7 @@ void ss_exit(void) {
  *
  * No return value.
  */
-void ss_help(void) {
+void ss_help(void); {
     int i;
     const char *builtins[] = {"ss_cd", "ss_exit", "ss_help"};
     printf("Welcome to the ATLAS Simple Shell!;\n");
