@@ -14,8 +14,7 @@ char ***parse(const char *line) {
     int command_index = 0;
     char *current_command, *argument;
     char ***parsed_commands = NULL;
-
-    // Allocate memory for parsed_commands
+    
     parsed_commands = malloc(MAX_CMDS * sizeof(char **));
     if (!parsed_commands) {
         fprintf(stderr, "Failed to allocate memory for parsed commands.\n");
