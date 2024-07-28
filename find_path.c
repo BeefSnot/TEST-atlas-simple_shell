@@ -7,9 +7,8 @@
 #include "shell.h"
 
 void ss_cd(char **args);
-void ss_exit(int status);
-void ss_help(void);
-
+void ss_exit(char **args);
+void ss_help(char **args);
 void find_env(char **cmds);
 
 /**
@@ -26,7 +25,7 @@ void find_path(char **cmds)
         int is_builtin = 0;
         int builtin_index = 0;
         const char *builtin_commands[] = {"cd", "exit", "help"};
-        void (*builtin_functions[])() = {ss_cd, ss_exit, ss_help};
+        void (*builtin_functions[])(char **) = {ss_cd, ss_exit, ss_help};
 
         for (builtin_index = 0; builtin_index < sizeof(builtin_commands) / sizeof(const char *); builtin_index++)
         {
@@ -47,21 +46,58 @@ void find_path(char **cmds)
     }
 }
 
+/**
+ * ss_cd - Built-in command: change directory.
+ * @args: List of arguments.  args[0] is "cd".  args[1] is the directory.
+ */
 void ss_cd(char **args)
 {
-    
+    if (args[1] == NULL)
+    {
+        fprintf(stderr, "ss: expected argument to \"cd\"\n");
+    }
+    else
+    {
+        if (chdir(args[1]) != 0)
+        {
+            perror("ss");
+        }
+    }
 }
 
-void ss_exit(int status)
+/**
+ * ss_exit - Built-in command: exit the shell.
+ * @args: List of arguments.  args[0] is "exit".  args[1] is the status.
+ */
+void ss_exit(char **args)
 {
-    
+    int status = 0;
+    if (args[1] != NULL)
+    {
+        status = atoi(args[1]);
+    }
+    exit(status);
 }
 
-void ss_help(void)
+/**
+ * ss_help - Built-in command: print help.
+ * @args: List of arguments.  args[0] is "help".
+ */
+void ss_help(char **args)
 {
-    
+    printf("Simple Shell\n");
+    printf("Type program names and arguments, and hit enter.\n");
+    printf("The following are built in:\n");
+
+    printf("  cd\n");
+    printf("  exit\n");
+    printf("  help\n");
 }
 
+/**
+ * find_env - Find the environment for non-builtin commands.
+ * @cmds: An array of command strings to be processed.
+ */
 void find_env(char **cmds)
 {
     
