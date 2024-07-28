@@ -1,3 +1,7 @@
+#include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
+#include <unistd.h>
 #include <sys/wait.h>
 #include "shell.h"
 
@@ -29,19 +33,26 @@ void find_env(char **cmds) {
         if (!full_path) {
             perror("Memory allocation failed");
             free(path_copy);
-            exit(EXIT_FAILURE);
+            return;
         }
 
         strcpy(full_path, path_dir);
         strcat(full_path, "/");
         strcat(full_path, cmds[0]);
 
-        if (access(full_path, X_OK) == 0) {
-            if (fork_exec(cmds, full_path)) {
+        pid_t pid = fork();
+        if (pid == -1) {
+            perror("Failed to fork");
+            free(full_path);
+            continue;
+        } else if (pid == 0) { // Child process
+            if (execvp(cmds[0], cmds) == -1) {
                 perror("Failed to execute command");
             }
-        } else {
-            fprintf(stderr, "Executable '%s' not found in PATH.\n", cmds[0]);
+            exit(EXIT_FAILURE);
+        } else { // Parent process
+            int status;
+            waitpid(pid, &status, 0);
         }
 
         free(full_path);
