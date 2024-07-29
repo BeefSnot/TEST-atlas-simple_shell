@@ -6,19 +6,19 @@
  *
  * Return: 1 on success, -1 on failure.
  */
-int ss_cd(const char *cmds)
+int ss_cd(int argc, char *argv[])
 {
-    if (!cmds || !cmds[1])
-        {
+    if (argc < 2)
+    {
         fprintf(stderr, "ss: expected argument to \"cd\"\n");
-        return (-1);
+        return -1;
     }
-    if (chdir(cmds + 1) == -1)
-        {
+    if (chdir(argv[1]) == -1)
+    {
         perror("ss");
-        return (-1);
+        return -1;
     }
-    return (1);
+    return 1;
 }
 
 /**
