@@ -13,7 +13,7 @@ int ss_cd(const char *cmds)
         fprintf(stderr, "ss: expected argument to \"cd\"\n");
         return (-1);
     }
-    if (chdir(cmds[1]) == -1)
+    if (chdir(&cmds[1]) == -1)
     {
         perror("ss");
         return (-1);
