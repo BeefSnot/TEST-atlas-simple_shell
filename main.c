@@ -4,7 +4,7 @@
  * Return: 0 or -1 on fail.
  */
 
-int main(void);
+int main(void)
 {
 	while (1)
 	{
