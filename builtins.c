@@ -1,4 +1,4 @@
-#include "./shell.h"
+#include "shell.h"
 
 /**
  * ss_cd - Changes the current working directory.
