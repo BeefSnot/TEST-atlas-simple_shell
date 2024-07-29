@@ -20,7 +20,7 @@ char **parse(const char *line);
 char **prompt(void);
 void fork_exec(char **command, char *full_path);
 void find_path(char **cmds);
-int ss_cd(const char *cmds)
+int ss_cd(const char *cmds);
 void ss_exit(char **args);
 void ss_help(char **args);
 void findenv(char **cmds);
