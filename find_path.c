@@ -7,7 +7,7 @@
 #include "shell.h"
 
 /* Function prototypes */
-int ss_cd(const char *cmds);
+int ss_cd(char **args)
 void ss_exit(char **args);
 void ss_help(char **args);
 void find_env(char **cmds);
