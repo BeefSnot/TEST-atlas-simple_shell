@@ -24,10 +24,9 @@ int ss_cd(const char *cmds)
 /**
  * ss_exit - Exits the shell.
  */
-int ss_exit(void)
+void ss_exit(void)
 {
     exit(EXIT_SUCCESS);
-    return 0;
 }
 
 /**
