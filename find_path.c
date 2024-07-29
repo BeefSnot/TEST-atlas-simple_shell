@@ -4,17 +4,16 @@
 #include <unistd.h>
 #include <sys/types.h>
 #include <sys/wait.h>
-#include "shell.h"
+#include "./shell.h"
 
 /* Function prototypes */
-int ss_cd(const char *cmds)
+void ss_cd(char **args);
 void ss_exit(char **args);
 void ss_help(char **args);
 void find_env(char **cmds);
 
 int main(int argc, char *argv[])
 {
-    
     char *commands[] = {"cd", "/home/user", "exit", "ls", NULL};
     find_path(commands);
     return 0;
@@ -24,9 +23,9 @@ int main(int argc, char *argv[])
  * ss_cd - Changes the current working directory.
  * @args: Array of arguments, args[0] is "cd", args[1] is the directory path.
  */
-int ss_cd(const char *cmds)
+void ss_cd(char **args)
 {
-    if (args[1] == '\0')
+    if (args[1] == NULL)
     {
         fprintf(stderr, "ss: expected argument to \"cd\"\n");
     }
