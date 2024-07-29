@@ -9,12 +9,12 @@
 int ss_cd(const char *cmds)
 {
     if (!cmds || !cmds[1])
-        {
+    {
         fprintf(stderr, "ss: expected argument to \"cd\"\n");
         return (-1);
     }
-    if (chdir(cmds + 1) == -1)
-        {
+    if (chdir(cmds[1]) == -1)
+    {
         perror("ss");
         return (-1);
     }
@@ -24,15 +24,16 @@ int ss_cd(const char *cmds)
 /**
  * ss_exit - Exits the shell.
  */
-void ss_exit(void);
+int ss_exit(void)
 {
     exit(EXIT_SUCCESS);
+    return 0;
 }
 
 /**
-* ss_help - Lists the built-in functions of the shell.
-*/
-void ss_help(void);
+ * ss_help - Lists the built-in functions of the shell.
+ */
+void ss_help(void)
 {
     int i;
     const char *builtins[] = {"ss_cd", "ss_exit", "ss_help"};
@@ -43,9 +44,9 @@ void ss_help(void);
     printf("Type the program names and arguments,\n");
     printf("Press the 'enter' key to execute your command!\n");
     for (i = 0; i < sizeof(builtins) / sizeof(builtins[0]); i++)
-        {
+    {
         printf("%s\n", builtins[i]);
-        }
-    printf("If you need more information, feel free to use the 'man' command\n");printf("to view the manual for the shell!\n");
-    
+    }
+    printf("If you need more information, feel free to use the 'man' command\n");
+    printf("to view the manual for the shell!\n");
 }
