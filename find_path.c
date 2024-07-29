@@ -42,7 +42,7 @@ int ss_cd(const char *cmds);
  * ss_exit - Exits the shell with an optional status code.
  * @args: Array of arguments, args[0] is "exit", args[1] is the exit status.
  */
-void ss_exit(void)
+void ss_exit(void);
 {
     int status = 0;
     if (args[1] != NULL)
@@ -56,7 +56,7 @@ void ss_exit(void)
  * ss_help - Prints help information about the shell.
  * @args: Array of arguments, args[0] is "help".
  */
-void ss_help(void)
+void ss_help(void);
 {
     printf("Simple Shell\n");
     printf("Type program names and arguments, and hit enter.\n");
@@ -70,7 +70,7 @@ void ss_help(void)
  * find_path - Finds and executes the command passed in the arguments.
  * @cmds: Array of command strings to be executed.
  */
-void find_path(char **cmds)
+void find_path(char **cmds);
 {
     int cmd_index = 0;
     while (cmds[cmd_index] != NULL)
@@ -104,7 +104,7 @@ void find_path(char **cmds)
  * find_env - Executes the command passed in the arguments.
  * @cmds: Array of command strings to be executed.
  */
-void find_env(char **cmds)
+void find_env(char **cmds);
 {
     pid_t pid = fork();
     if (pid == 0) /* Child process */
