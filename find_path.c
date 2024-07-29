@@ -56,7 +56,7 @@ void ss_exit(char **args);
  * ss_help - Prints help information about the shell.
  * @args: Array of arguments, args[0] is "help".
  */
-void ss_help(void);
+void ss_help(char **args);
 {
     printf("Simple Shell\n");
     printf("Type program names and arguments, and hit enter.\n");
