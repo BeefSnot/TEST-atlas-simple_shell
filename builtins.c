@@ -43,9 +43,9 @@ void ss_help(void)
     printf("Type the program names and arguments,\n");
     printf("Press the 'enter' key to execute your command!\n");
     for (i = 0; i < sizeof(builtins) / sizeof(builtins[0]); i++)
-    {
+        {
         printf("%s\n", builtins[i]);
-    }
+        }
     printf("If you need more information, feel free to use the 'man' command\n");
     printf("to view the manual for the shell!\n");
 }
