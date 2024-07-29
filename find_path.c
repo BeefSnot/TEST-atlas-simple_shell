@@ -23,7 +23,7 @@ int main(int argc, char *argv[])
  * ss_cd - Changes the current working directory.
  * @args: Array of arguments, args[0] is "cd", args[1] is the directory path.
  */
-void ss_cd(char **args)
+void ss_cd(void)
 {
     if (args[1] == NULL)
     {
@@ -42,7 +42,7 @@ void ss_cd(char **args)
  * ss_exit - Exits the shell with an optional status code.
  * @args: Array of arguments, args[0] is "exit", args[1] is the exit status.
  */
-void ss_exit(char **args)
+void ss_exit(void)
 {
     int status = 0;
     if (args[1] != NULL)
@@ -56,7 +56,7 @@ void ss_exit(char **args)
  * ss_help - Prints help information about the shell.
  * @args: Array of arguments, args[0] is "help".
  */
-void ss_help(char **args)
+void ss_help(void)
 {
     printf("Simple Shell\n");
     printf("Type program names and arguments, and hit enter.\n");
