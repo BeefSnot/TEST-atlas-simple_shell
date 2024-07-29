@@ -3,7 +3,7 @@
 #include <sys/types.h>
 #include <sys/wait.h>
 #include <unistd.h>
-#include "./shell.h"
+#include "shell.h"
 
 /**
  * fork_exec - Forks the process to execute a command.
