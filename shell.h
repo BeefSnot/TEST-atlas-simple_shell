@@ -23,6 +23,6 @@ void find_path(char **cmds);
 void ss_cd(char **args);
 void ss_exit(char **args);
 void ss_help(char **args);
-void findenv(char **cmds); // Corrected typo here
+void findenv(char **cmds);
 
 #endif
