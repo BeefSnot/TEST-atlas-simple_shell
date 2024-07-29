@@ -1,11 +1,11 @@
 #include "./shell.h"
 
 /**
-* ss_cd - Changes the current working directory.
-* @cmds: The command to be executed.
-*
-* Return: 1 on success, -1 on failure.
-*/
+ * ss_cd - Changes the current working directory.
+ * @cmds: The command to be executed.
+ *
+ * Return: 1 on success, -1 on failure.
+ */
 int ss_cd(const char *cmds)
 {
     if (!cmds || !cmds[1])
@@ -22,8 +22,8 @@ int ss_cd(const char *cmds)
 }
 
 /**
-* ss_exit - Exits the shell.
-*/
+ * ss_exit - Exits the shell.
+ */
 void ss_exit(void)
 {
     exit(EXIT_SUCCESS);
