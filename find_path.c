@@ -7,7 +7,7 @@
 #include "./shell.h"
 
 /* Function prototypes */
-void ss_cd(char **args);
+int ss_cd(const char *cmds)
 void ss_exit(char **args);
 void ss_help(char **args);
 void find_env(char **cmds);
@@ -24,7 +24,7 @@ int main(int argc, char *argv[])
  * ss_cd - Changes the current working directory.
  * @args: Array of arguments, args[0] is "cd", args[1] is the directory path.
  */
-void ss_cd(char **args)
+int ss_cd(const char *cmds)
 {
     if (args[1] == '\0')
     {
