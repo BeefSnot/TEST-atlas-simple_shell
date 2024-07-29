@@ -4,7 +4,7 @@
 #include <unistd.h>
 #include <sys/types.h>
 #include <sys/wait.h>
-#include "./shell.h"
+#include "shell.h"
 
 /* Function prototypes */
 int ss_cd(const char *cmds)
