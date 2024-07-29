@@ -21,8 +21,8 @@ char **prompt(void);
 void fork_exec(char **command, char *full_path);
 void find_path(char **cmds);
 int ss_cd(const char *cmds);
-void ss_exit(void)
-void ss_help(void)
+void ss_exit(void);
+void ss_help(void);
 void findenv(char **cmds);
 
 #endif
