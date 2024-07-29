@@ -3,7 +3,7 @@
 /**
  * ss_help - Lists the built-in functions of the shell.
  */
-void ss_help(char **args);
+void ss_help(char **args)
 {
     size_t i;
     const char *builtins[] = {"ss_cd", "ss_exit", "ss_help"};
