@@ -7,7 +7,7 @@
 #include "shell.h"
 
 /* Function prototypes */
-void ss_cd(char **args);
+int ss_cd(const char *cmds);
 void ss_exit(char **args);
 void ss_help(char **args);
 void find_env(char **cmds);
@@ -42,7 +42,7 @@ int ss_cd(const char *cmds);
  * ss_exit - Exits the shell with an optional status code.
  * @args: Array of arguments, args[0] is "exit", args[1] is the exit status.
  */
-void ss_exit(void);
+void ss_exit(char **args);
 {
     int status = 0;
     if (args[1] != NULL)
