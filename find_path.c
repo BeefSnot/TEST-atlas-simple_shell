@@ -12,13 +12,6 @@ void ss_exit(char **args);
 void ss_help(char **args);
 void find_env(char **cmds);
 
-int main(int argc, char *argv[])
-{
-    char *commands[] = {"cd", "/home/user", "exit", "ls", NULL};
-    find_path(commands);
-    return 0;
-}
-
 /**
  * ss_cd - Changes the current working directory.
  * @args: Array of arguments, args[0] is "cd", args[1] is the directory path.
