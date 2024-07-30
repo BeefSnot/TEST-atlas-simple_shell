@@ -3,10 +3,6 @@
 #include <stdlib.h>
 #include <string.h>
 
-#define MAX_CMDS 10
-#define MAX_ARGS 10
-#define TOK_DELIM " \t\r\n\a"
-
 /**
  * parse - Parses the user input string into commands and arguments
  * @line: The user input string to be parsed.
