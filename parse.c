@@ -12,6 +12,7 @@
  */
 char ***parse(const char *line)
 {
+    int i;
     int command_index = 0;
     char *current_command, *argument;
     char ***parsed_commands = NULL;
@@ -54,7 +55,6 @@ char ***parse(const char *line)
             if (!command_args[argument_index])
             {
                 fprintf(stderr, "Failed to duplicate argument.\n");
-                int i;
                 for (i = 0; i < argument_index; i++)
                 {
                     free(command_args[i]);
