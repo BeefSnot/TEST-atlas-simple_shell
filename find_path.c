@@ -21,7 +21,7 @@ int wrap_ss_help(char **args);
 int wrap_ss_exit(char **args)
 {
     ss_exit(args);
-    return 0;
+    return 0; // Ensure it returns an int
 }
 
 /**
@@ -31,7 +31,7 @@ int wrap_ss_exit(char **args)
 int wrap_ss_help(char **args)
 {
     ss_help(args);
-    return 0;
+    return 0; // Ensure it returns an int
 }
 
 /**
@@ -92,7 +92,7 @@ void find_path(char **cmds)
     int cmd_index = 0;
     char *current_command = cmds[cmd_index];
 
-    int (*builtin_functions[])(char **) = {ss_cd, wrap_ss_exit, ss_help};
+    int (*builtin_functions[])(char **) = {ss_cd, wrap_ss_exit, wrap_ss_help};
 
     size_t num_builtins = sizeof(builtin_functions) / sizeof(builtin_functions[0]);
     size_t i;
