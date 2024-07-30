@@ -12,6 +12,7 @@ void ss_exit(char **args);
 void ss_help(char **args);
 void find_env(char **cmds);
 int wrap_ss_exit(char **args);
+int wrap_ss_help(char **args);
 
 /**
  * wrap_ss_exit - Wrapper function for ss_exit to match function pointer type.
@@ -20,6 +21,16 @@ int wrap_ss_exit(char **args);
 int wrap_ss_exit(char **args)
 {
     ss_exit(args);
+    return 0;
+}
+
+/**
+ * wrap_ss_help - Wrapper function for ss_help to match function pointer type.
+ * @args: Array of arguments.
+ */
+int wrap_ss_help(char **args)
+{
+    ss_help(args);
     return 0;
 }
 
