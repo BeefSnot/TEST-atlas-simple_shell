@@ -10,7 +10,7 @@
  * Return: A double pointer to an array of commands and arguments,
  *         or NULL on failure.
  */
-char **parse(const char *line)
+char ***parse(const char *line)
 {
     int i;
     int command_index = 0;
