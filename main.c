@@ -1,4 +1,4 @@
-#include "shell.h"
+#include "./shell.h"
 /**
  * main - Simple shell
  * Return: 0 or -1 on fail.
@@ -6,11 +6,11 @@
 
 int main(void)
 {
-	while (1)
-	{
-		char **cmds = **prompt();
+    while (1)
+    {
+        char **cmds = prompt();
 
-		find_path(cmds);
-	}
-	return (0);
+        find_path(cmds);
+    }
+    return (0);
 }
