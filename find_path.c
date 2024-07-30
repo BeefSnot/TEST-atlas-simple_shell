@@ -21,7 +21,7 @@ int wrap_ss_help(char **args);
 int wrap_ss_exit(char **args)
 {
     ss_exit(args);
-    return 0; // Ensure it returns an int
+    return 0;
 }
 
 /**
@@ -31,7 +31,7 @@ int wrap_ss_exit(char **args)
 int wrap_ss_help(char **args)
 {
     ss_help(args);
-    return 0; // Ensure it returns an int
+    return 0;
 }
 
 /**
