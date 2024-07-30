@@ -16,7 +16,7 @@ void find_env(char **cmds);
  * @args: Array of arguments, args[0] is "cd", args[1] is the directory path.
  */
 int ss_cd(const char *cmds);
-{
+
     if (args[1] == NULL)
     {
         fprintf(stderr, "ss: expected argument to \"cd\"\n");
