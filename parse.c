@@ -10,7 +10,7 @@
  * Return: A double pointer to an array of commands and arguments,
  *         or NULL on failure.
  */
-char **parse(const char *line)
+char ***parse(const char *line)
 {
     int command_index = 0;
     char *current_command, *argument;
@@ -54,8 +54,8 @@ char **parse(const char *line)
             if (!command_args[argument_index])
             {
                 fprintf(stderr, "Failed to duplicate argument.\n");
-                int i; // Declare variable outside the loop
-                for (i = 0; i < argument_index; i++) // Use declared variable here
+                int i; /* Moved variable declaration to the top of the block */
+                for (i = 0; i < argument_index; i++)
                 {
                     free(command_args[i]);
                 }
