@@ -23,7 +23,7 @@ int ss_cd(const char *cmds)
     }
     else
     {
-        if (chdir(args[1]) != 0)
+        if (chdir(cmds[1]) != 0)
         {
             perror("ss");
         }
