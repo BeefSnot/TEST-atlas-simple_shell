@@ -9,6 +9,7 @@
 /* Function prototypes */
 int ss_cd(const char *cmds);
 void ss_exit(char **args);
+void ss_help(char **args)
 void find_env(char **cmds);
 
 /**
@@ -49,6 +50,15 @@ void ss_exit(char **args)
  * ss_help - Prints help information about the shell.
  * @args: Array of arguments, args[0] is "help".
  */
+
+void ss_help(char **args)
+{
+    (void)args; // Mark the parameter as unused
+    printf("Simple Shell\n");
+    printf("Type program names and arguments, and hit enter.\n");
+    printf("The following are built in:\n");
+    printf("  cd\n");
+}
 
 /**
  * find_path - Finds and executes the command passed in the arguments.
