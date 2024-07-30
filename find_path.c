@@ -50,15 +50,6 @@ void ss_exit(char **args)
  * ss_help - Prints help information about the shell.
  * @args: Array of arguments, args[0] is "help".
  */
-void ss_help(void)
-{
-    printf("Simple Shell\n");
-    printf("Type program names and arguments, and hit enter.\n");
-    printf("The following are built in:\n");
-    printf("  cd\n");
-    printf("  exit\n");
-    printf("  help\n");
-}
 
 /**
  * find_path - Finds and executes the command passed in the arguments.
