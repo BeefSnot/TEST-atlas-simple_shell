@@ -23,5 +23,8 @@ void find_path(char **cmds);
 int ss_cd(char **cmds);
 void ss_exit(char **args);
 void findenv(char **cmds);
+int wrap_ss_help(char **args);
+int wrap_ss_exit(char **args);
+
 
 #endif
