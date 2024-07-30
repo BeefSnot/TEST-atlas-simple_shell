@@ -3,14 +3,18 @@
 #include <stdlib.h>
 #include <string.h>
 
+#define MAX_CMDS 10
+#define MAX_ARGS 10
+#define TOK_DELIM " \t\r\n\a"
+
 /**
- * parse - Parses user input into distinct commands and arguments.
+ * parse - Parses the user input string into commands and arguments
  * @line: The user input string to be parsed.
  *
- * Return: A double pointer to an array of commands and their arguments,
+ * Return: A double pointer to an array of commands and arguments,
  *         or NULL on failure.
  */
-char **parse(const char *line)
+char ***parse(const char *line)
 {
     int command_index = 0;
     char *current_command, *argument;
@@ -53,9 +57,11 @@ char **parse(const char *line)
             command_args[argument_index] = strdup(argument);
             if (!command_args[argument_index])
             {
-                fprintf(stderr, "Failed to duplicate argument string.\n");
+                fprintf(stderr, "Failed to duplicate argument.\n");
                 for (int i = 0; i < argument_index; i++)
+                {
                     free(command_args[i]);
+                }
                 free(command_args);
                 free(parsed_commands);
                 free(line_copy);
@@ -64,16 +70,12 @@ char **parse(const char *line)
             argument_index++;
             argument = strtok(NULL, TOK_DELIM);
         }
-
         command_args[argument_index] = NULL;
         parsed_commands[command_index] = command_args;
         command_index++;
-
         current_command = strtok(NULL, "|");
     }
-
     parsed_commands[command_index] = NULL;
     free(line_copy);
-
     return parsed_commands;
 }
