@@ -17,7 +17,7 @@ void find_env(char **cmds);
  */
 int ss_cd(const char *cmds)
 {
-    if (args[1] == NULL)
+    if (cmds[1] == NULL)
     {
         fprintf(stderr, "ss: expected argument to \"cd\"\n");
     }
