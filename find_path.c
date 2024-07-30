@@ -13,7 +13,7 @@ void find_env(char **cmds);
 
 /**
  * ss_cd - Changes the current working directory.
- * @args: Array of arguments, args[0] is "cd", args[1] is the directory path.
+ * @cmds: Array of arguments, cmds[0] is "cd", cmds[1] is the directory path.
  */
 int ss_cd(char **cmds)
 {
@@ -46,36 +46,42 @@ void ss_exit(char **args)
 }
 
 /**
+ * ss_help - Prints help information about the shell.
+ * @args: Array of arguments, args[0] is "help".
+ */
+void ss_help(char **args)
+{
+    (void)args;
+    printf("Simple Shell\n");
+    printf("Type program names and arguments, and hit enter.\n");
+    printf("The following are built in:\n");
+    printf("  cd\n");
+    printf("  exit\n");
+    printf("  help\n");
+}
+
+/**
  * find_path - Finds and executes the command passed in the arguments.
- * @cmds: Array of command strings to be executed.
+ * @cmds: Array of commands.
  */
 void find_path(char **cmds)
 {
     int cmd_index = 0;
-    while (cmds[cmd_index] != NULL)
-    {
-        char **current_command = cmds[cmd_index];
-        int is_builtin = 0;
-        int builtin_index = 0;
-        const char *builtin_commands[] = {"cd", "exit", "help"};
-        void (*builtin_functions[])(char **) = {ss_cd, ss_exit, ss_help};
+    char *current_command = cmds[cmd_index];
 
-        for (builtin_index = 0; builtin_index < sizeof(builtin_commands) / sizeof(const char *); builtin_index++)
+    int (*builtin_functions[])(char **) = {ss_cd, ss_exit, ss_help};
+
+    while (current_command != NULL)
+    {
+        for (int i = 0; i < sizeof(builtin_functions) / sizeof(builtin_functions[0]); i++)
         {
-            if (strcmp(current_command[0], builtin_commands[builtin_index]) == 0)
+            if (builtin_functions[i](cmds) == 0)
             {
-                is_builtin = 1;
-                (*builtin_functions[builtin_index])(current_command);
-                break;
+                return;
             }
         }
-
-        if (!is_builtin)
-        {
-            find_env(cmds);
-        }
-
         cmd_index++;
+        current_command = cmds[cmd_index];
     }
 }
 
@@ -86,17 +92,17 @@ void find_path(char **cmds)
 void find_env(char **cmds)
 {
     pid_t pid = fork();
-    if (pid == 0) /* Child process */
+    if (pid == 0)
     {
         execvp(cmds[0], cmds);
-        perror("ss"); /* execvp returns only on failure */
+        perror("ss");
         exit(EXIT_FAILURE);
     }
-    else if (pid > 0) /* Parent process */
+    else if (pid > 0)
     {
-        wait(NULL); /* Wait for child to finish */
+        wait(NULL);
     }
-    else /* Fork failed */
+    else
     {
         perror("ss");
     }
