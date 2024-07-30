@@ -1,7 +1,7 @@
-#include "shell.h"
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
+#include "shell.h"
 
 /**
  * parse - Parses the user input string into commands and arguments
@@ -54,7 +54,8 @@ char **parse(const char *line)
             if (!command_args[argument_index])
             {
                 fprintf(stderr, "Failed to duplicate argument.\n");
-                for (int i = 0; i < argument_index; i++)
+                int i; // Declare variable outside the loop
+                for (i = 0; i < argument_index; i++) // Use declared variable here
                 {
                     free(command_args[i]);
                 }
