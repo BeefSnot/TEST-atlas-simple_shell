@@ -20,7 +20,7 @@ int wrap_ss_exit(char **args);
 int wrap_ss_exit(char **args)
 {
     ss_exit(args);
-    return 0; // Ensure it returns an int
+    return 0;
 }
 
 /**
