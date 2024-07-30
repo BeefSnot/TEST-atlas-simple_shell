@@ -69,10 +69,10 @@ void find_path(char **cmds)
     int cmd_index = 0;
     char *current_command = cmds[cmd_index];
 
-    int (*builtin_functions[])(char **) = {ss_cd};
+    int (*builtin_functions[])(char **) = {ss_cd, ss_exit, ss_help};
 
     size_t num_builtins = sizeof(builtin_functions) / sizeof(builtin_functions[0]);
-    int i;
+    size_t i;
 
     while (current_command != NULL)
     {
