@@ -15,8 +15,8 @@ void find_env(char **cmds);
  * ss_cd - Changes the current working directory.
  * @args: Array of arguments, args[0] is "cd", args[1] is the directory path.
  */
-int ss_cd(const char *cmds);
-
+int ss_cd(const char *cmds)
+{
     if (args[1] == NULL)
     {
         fprintf(stderr, "ss: expected argument to \"cd\"\n");
