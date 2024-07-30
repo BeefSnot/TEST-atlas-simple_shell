@@ -9,9 +9,19 @@
 /* Function prototypes */
 int ss_cd(char **cmds);
 void ss_exit(char **args);
+void ss_help(char **args);
 void find_env(char **cmds);
+int wrap_ss_exit(char **args);
+
+/**
+ * wrap_ss_exit - Wrapper function for ss_exit to match function pointer type.
+ * @args: Array of arguments.
+ */
 int wrap_ss_exit(char **args)
-int wrap_ss_help(char **args)
+{
+    ss_exit(args);
+    return 0; // Ensure it returns an int
+}
 
 /**
  * ss_cd - Changes the current working directory.
@@ -66,49 +76,27 @@ void ss_help(char **args)
  * find_path - Finds and executes the command passed in the arguments.
  * @cmds: Array of commands.
  */
-/* Wrapper functions */
-int wrap_ss_exit(char **args)
-{
-    ss_exit(args);
-    return 0;
-}
-
-int wrap_ss_help(char **args)
-{
-    ss_help(args);
-    return 0;
-}
-
-/**
- * find_path - Finds and executes the command passed in the arguments.
- * @cmds: Array of command strings to be executed.
- */
 void find_path(char **cmds)
 {
     int cmd_index = 0;
-    while (cmds[cmd_index] != NULL)
-    {
-        char **current_command = cmds[cmd_index];
-        int is_builtin = 0;
-        const char *builtin_commands[] = {"cd", "exit", "help"};
-        int (*builtin_functions[])(char **) = {ss_cd, wrap_ss_exit, wrap_ss_help};
+    char *current_command = cmds[cmd_index];
 
-        for (int builtin_index = 0; builtin_index < sizeof(builtin_commands) / sizeof(const char *); builtin_index++)
+    int (*builtin_functions[])(char **) = {ss_cd, wrap_ss_exit, ss_help};
+
+    size_t num_builtins = sizeof(builtin_functions) / sizeof(builtin_functions[0]);
+    size_t i;
+
+    while (current_command != NULL)
+    {
+        for (i = 0; i < num_builtins; i++)
         {
-            if (strcmp(current_command[0], builtin_commands[builtin_index]) == 0)
+            if (builtin_functions[i](cmds) == 0)
             {
-                is_builtin = 1;
-                builtin_functions[builtin_index](current_command);
-                break;
+                return;
             }
         }
-
-        if (!is_builtin)
-        {
-            find_env(cmds);
-        }
-
         cmd_index++;
+        current_command = cmds[cmd_index];
     }
 }
 
