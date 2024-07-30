@@ -53,7 +53,7 @@ void ss_exit(char **args)
 
 void ss_help(char **args)
 {
-    (void)args; // Mark the parameter as unused
+    (void)args;
     printf("Simple Shell\n");
     printf("Type program names and arguments, and hit enter.\n");
     printf("The following are built in:\n");
