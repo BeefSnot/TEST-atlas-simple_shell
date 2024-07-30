@@ -9,7 +9,7 @@
 /* Function prototypes */
 int ss_cd(const char *cmds);
 void ss_exit(char **args);
-void ss_help(char **args);
+void ss_help(void);
 void find_env(char **cmds);
 
 /**
